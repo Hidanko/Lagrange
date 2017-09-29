@@ -13,26 +13,36 @@ public class Lagrange {
 
     double x[];
     double f[];
-    double[] cima = {0};
-    double[] baixo = {0};
+    double[] cima;
+    double[] baixo;
     double lagrange;
     double[] matriz;
 
     public Lagrange(double[] x, double[] f, double lagrange) {
+        
+        this.x = new double[3];
+        this.f = new double[3];
+        
         this.x = x;
         this.f = f;
         this.lagrange = lagrange;
     }
 
+    public Lagrange() {
+    }
+
     public double calculo() {
+        cima = new double[3];
+        baixo = new double[3];
+        matriz = new double[3];
             System.out.println("X.length = "+x.length);
-        for (double interacao : x) {
-            cima[(int) interacao] = 1;
-            baixo[(int)interacao] = 1;
+        for (int interacao = 0; interacao < x.length; interacao++) {
+            cima[interacao] = 1.0;
+            baixo[interacao] = 1.0;
             for (int i = 0; i < x.length; i++) {
                 if (interacao != i) {
-                    cima[(int) interacao] *= lagrange - x[i];
-                    baixo[(int) interacao] *= x[(int) interacao] - x[i];
+                    cima[interacao] *= lagrange - x[i];
+                    baixo[interacao] *= x[(int) interacao] - x[i];
                 }
 
             }
@@ -40,16 +50,18 @@ public class Lagrange {
 
         for (int i = 0; i < cima.length; i++) {
             matriz[i] = cima[i] / baixo[i];
+            System.out.println("Matriz["+i+"] = "+matriz[i]);
         }
 
         return resposta(matriz);
     }
 
-    private double resposta(double[] resultado) {
+    public double resposta(double[] resultado) {
 
         double soma = 0;
-        for (double d : resultado) {
-            soma += f[(int)d] * ( resultado[(int) d] / x[(int) d]);
+        for (int i = 0; i < x.length; i++) {
+            soma += f[i] *resultado[i];
+            System.out.println(i+" - "+soma);
         }
 
         return soma;
