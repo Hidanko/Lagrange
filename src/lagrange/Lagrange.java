@@ -17,12 +17,13 @@ public class Lagrange {
     double[] baixo;
     double lagrange;
     double[] matriz;
-
-    public Lagrange(double[] x, double[] f, double lagrange) {
+    int size;
+    
+    public Lagrange(double[] x, double[] f, double lagrange, int size) {
         
-        this.x = new double[3];
-        this.f = new double[3];
-        
+        this.x = new double[size];
+        this.f = new double[size];
+        this.size = size;
         this.x = x;
         this.f = f;
         this.lagrange = lagrange;
@@ -32,9 +33,9 @@ public class Lagrange {
     }
 
     public double calculo() {
-        cima = new double[3];
-        baixo = new double[3];
-        matriz = new double[3];
+        cima = new double[size];
+        baixo = new double[size];
+        matriz = new double[size];
             System.out.println("X.length = "+x.length);
         for (int interacao = 0; interacao < x.length; interacao++) {
             cima[interacao] = 1.0;
