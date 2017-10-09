@@ -15,18 +15,18 @@ public class Lagrange {
     double f[];
     double[] cima;
     double[] baixo;
-    double lagrange;
+    double valor;
     double[] matriz;
     int size;
     
-    public Lagrange(double[] x, double[] f, double lagrange, int size) {
+    public Lagrange(double[] x, double[] f, double valor, int size) {
         
         this.x = new double[size];
         this.f = new double[size];
         this.size = size;
         this.x = x;
         this.f = f;
-        this.lagrange = lagrange;
+        this.valor = valor;
     }
 
     public Lagrange() {
@@ -42,7 +42,7 @@ public class Lagrange {
             baixo[interacao] = 1.0;
             for (int i = 0; i < x.length; i++) {
                 if (interacao != i) {
-                    cima[interacao] *= lagrange - x[i];
+                    cima[interacao] *= valor - x[i];
                     baixo[interacao] *= x[(int) interacao] - x[i];
                 }
 
