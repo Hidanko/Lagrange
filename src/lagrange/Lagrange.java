@@ -91,7 +91,7 @@ public class Lagrange {
             }
             System.out.println(linha);
             resultadoPratico += (f[i] / mult);
-            String envio[] = {String.valueOf(i + 1), linha, String.valueOf(mult), String.valueOf(f[i]), String.valueOf(resultadoPratico)};
+            String envio[] = {String.valueOf(i + 1), linha, String.valueOf(mult), String.valueOf(f[i]), String.valueOf(f[i] / mult)};
             tabela.incrementarLinha(envio, i);
         }
 
