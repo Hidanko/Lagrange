@@ -87,15 +87,15 @@ public class Tabela extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(resultado2)
                     .addComponent(resultado1))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 563, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,7 +105,7 @@ public class Tabela extends javax.swing.JFrame {
                 .addComponent(resultado1)
                 .addGap(18, 18, 18)
                 .addComponent(resultado2)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -115,15 +115,15 @@ public class Tabela extends javax.swing.JFrame {
 
     public void incrementarLinha(String[] envio, int pos) {
         for (int i = 0; i < 5; i++) {
-           tablePrincipal.getModel().setValueAt(envio[i], pos, i);
-            
+            tablePrincipal.getModel().setValueAt(envio[i], pos, i);
+
         }
-        
-        System.out.println("End");
+
     }
-    public void imprimirResultados (double r1, double r2){
-        resultado1.setText("Resultado utilizando o método padrão: "+r1);
-        resultado2.setText("Resultado utilizando o esquema prático: "+r2);
+
+    public void imprimirResultados(double r1, double r2) {
+        resultado1.setText("Resultado utilizando o método padrão: " + r1);
+        resultado2.setText("Resultado utilizando o esquema prático: " + r2);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

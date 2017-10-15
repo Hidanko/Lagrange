@@ -341,7 +341,7 @@ public class Principal extends javax.swing.JFrame {
         xbusca = Double.parseDouble(busca.getText());
 
         l = new Lagrange(X, F, xbusca, SliderNum.getValue());
-        l.calculo();
+        result = l.calculo();
         labelResultado.setText("Ultimo Resultado: " + result);
 
 

@@ -37,11 +37,10 @@ public class Lagrange {
     public Lagrange() {
     }
 
-    public void calculo() {
+    public double calculo() {
         cima = new double[size];
         baixo = new double[size];
         matriz = new double[size];
-        System.out.println("X.length = " + x.length);
         for (int interacao = 0; interacao < x.length; interacao++) {
             cima[interacao] = 1.0;
             baixo[interacao] = 1.0;
@@ -56,10 +55,11 @@ public class Lagrange {
 
         for (int i = 0; i < cima.length; i++) {
             matriz[i] = cima[i] / baixo[i];
-            
+
         }
         resultadoNormal = resposta(matriz);
         tabela.imprimirResultados(resultadoNormal, resultadoPratico);
+        return resultadoNormal;
     }
 
     public double resposta(double[] resultado) {
@@ -67,34 +67,41 @@ public class Lagrange {
         double soma = 0;
         for (int i = 0; i < x.length; i++) {
             soma += f[i] * resultado[i];
-            
+
         }
-        esquemaPratico();
+        double temp = esquemaPratico();
+        System.out.println("Temp = " + temp);
         return soma;
     }
 
     @SuppressWarnings("empty-statement")
-    public void esquemaPratico() {
+    public double esquemaPratico() {
         tabela = new Tabela();
-
+        resultadoPratico = 0;
+        double S = 1; // multiplicação dos valores da diagonal, para multiplicar o resultado
         for (int i = 0; i < size; i++) {
             String linha = " ";
-             double mult = 1;
+            double mult = 1;
             for (int j = 0; j < size; j++) {
                 if (i == j) {
-                    linha = (linha+"(" + valor + " - " + x[j] + " )  \t");
+                    linha = (linha + "(" + valor + " - " + x[j] + " )  \t");
                     mult *= (valor - x[j]);
+                    S *= (valor - x[j]);
                 } else {
-                    linha = (linha+"(" + x[i] + " - " + x[j] + " )  \t");
+                    linha = (linha + "(" + x[i] + " - " + x[j] + " )  \t");
                     mult *= (x[i] - x[j]);
                 }
+
             }
-            System.out.println(linha);
-            resultadoPratico += (f[i] / mult);
+            resultadoPratico = resultadoPratico + (f[i] / mult);
+
             String envio[] = {String.valueOf(i + 1), linha, String.valueOf(mult), String.valueOf(f[i]), String.valueOf(f[i] / mult)};
             tabela.incrementarLinha(envio, i);
+
         }
 
+        resultadoPratico *= S;
         tabela.setVisible(true);
+        return resultadoPratico;
     }
 }
